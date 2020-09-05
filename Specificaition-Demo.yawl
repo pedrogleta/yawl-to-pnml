@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specificationSet xmlns="http://www.yawlfoundation.org/yawlschema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="4.0" xsi:schemaLocation="http://www.yawlfoundation.org/yawlschema http://www.yawlfoundation.org/yawlschema/YAWL_Schema4.0.xsd">
+  <specification uri="Specificaition-Demo">
+    <documentation>No description provided</documentation>
+    <metaData>
+      <creator>pedro</creator>
+      <description>No description provided</description>
+      <coverage>4.3.1</coverage>
+      <version>0.1</version>
+      <persistent>false</persistent>
+      <identifier>UID_bd27d502-d80d-4e88-b7a4-c45f9d4aba84</identifier>
+    </metaData>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" />
+    <decomposition id="Net" isRootNet="true" xsi:type="NetFactsType">
+      <processControlElements>
+        <inputCondition id="InputCondition">
+          <flowsInto>
+            <nextElementRef id="task1" />
+          </flowsInto>
+        </inputCondition>
+        <task id="task1">
+          <name>task1</name>
+          <flowsInto>
+            <nextElementRef id="condition1" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <timer>
+            <trigger>OnEnabled</trigger>
+            <duration>PT3S</duration>
+          </timer>
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+        </task>
+        <condition id="condition1">
+          <name>condition1</name>
+          <flowsInto>
+            <nextElementRef id="task2" />
+          </flowsInto>
+        </condition>
+        <task id="task2">
+          <name>task2</name>
+          <flowsInto>
+            <nextElementRef id="condition2" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+        </task>
+        <condition id="condition2">
+          <name>condition2</name>
+          <flowsInto>
+            <nextElementRef id="task3" />
+          </flowsInto>
+        </condition>
+        <task id="task3">
+          <name>task3</name>
+          <flowsInto>
+            <nextElementRef id="OutputCondition" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+        </task>
+        <outputCondition id="OutputCondition" />
+      </processControlElements>
+    </decomposition>
+  </specification>
+  <layout>
+    <locale language="en" country="US"/>
+    <specification id="Specificaition-Demo">
+      <size w="58" h="28"/>
+      <net id="Net">
+        <bounds x="0" y="0" w="648" h="284"/>
+        <frame x="0" y="0" w="651" h="287"/>
+        <viewport x="0" y="0" w="651" h="287"/>
+        <container id="condition1">
+          <vertex>
+            <attributes>
+              <bounds x="200" y="140" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="168" y="172" w="96" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="condition2">
+          <vertex>
+            <attributes>
+              <bounds x="340" y="148" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="308" y="180" w="96" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <vertex id="OutputCondition">
+          <attributes>
+            <bounds x="576" y="136" w="32" h="32"/>
+          </attributes>
+        </vertex>
+        <vertex id="InputCondition">
+          <attributes>
+            <bounds x="36" y="136" w="32" h="32"/>
+          </attributes>
+        </vertex>
+        <container id="task1">
+          <vertex>
+            <attributes>
+              <bounds x="144" y="140" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="112" y="172" w="96" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="task2">
+          <vertex>
+            <attributes>
+              <bounds x="268" y="124" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="236" y="156" w="96" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="task3">
+          <vertex>
+            <attributes>
+              <bounds x="440" y="140" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="408" y="172" w="96" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <flow source="condition2" target="task3">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="condition1" target="task2">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="task1" target="condition1">
+          <ports in="13" out="10"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="task2" target="condition2">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="InputCondition" target="task1">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="task3" target="OutputCondition">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+      </net>
+    </specification>
+  </layout>
+</specificationSet>

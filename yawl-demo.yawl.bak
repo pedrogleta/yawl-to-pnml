@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specificationSet xmlns="http://www.yawlfoundation.org/yawlschema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="4.0" xsi:schemaLocation="http://www.yawlfoundation.org/yawlschema http://www.yawlfoundation.org/yawlschema/YAWL_Schema4.0.xsd">
+  <specification uri="yawl-demo">
+    <documentation>No description provided</documentation>
+    <metaData>
+      <creator>pedro</creator>
+      <description>No description provided</description>
+      <coverage>4.3.1.772</coverage>
+      <version>0.7</version>
+      <persistent>false</persistent>
+      <identifier>UID_c4f2c317-ca23-491c-ba7a-23419d84b0fd</identifier>
+    </metaData>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" />
+    <decomposition id="Net" isRootNet="true" xsi:type="NetFactsType">
+      <processControlElements>
+        <inputCondition id="InputCondition">
+          <flowsInto>
+            <nextElementRef id="task1" />
+          </flowsInto>
+        </inputCondition>
+        <task id="task1">
+          <name>task1</name>
+          <flowsInto>
+            <nextElementRef id="condition1" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="task1" />
+        </task>
+        <condition id="condition1">
+          <name>condition1</name>
+          <flowsInto>
+            <nextElementRef id="splitTask" />
+          </flowsInto>
+        </condition>
+        <task id="splitTask">
+          <name>splitTask</name>
+          <flowsInto>
+            <nextElementRef id="task2.1" />
+            <isDefaultFlow />
+          </flowsInto>
+          <flowsInto>
+            <nextElementRef id="task2.2" />
+            <predicate ordering="0">true()</predicate>
+          </flowsInto>
+          <join code="xor" />
+          <split code="xor" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="splitTask" />
+        </task>
+        <task id="task2.1">
+          <name>task2.1</name>
+          <flowsInto>
+            <nextElementRef id="joinTask" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="task2.1" />
+        </task>
+        <task id="task2.2">
+          <name>task2.2</name>
+          <flowsInto>
+            <nextElementRef id="joinTask" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="task2.2" />
+        </task>
+        <task id="joinTask">
+          <name>joinTask</name>
+          <flowsInto>
+            <nextElementRef id="condition2" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="joinTask" />
+        </task>
+        <condition id="condition2">
+          <name>condition2</name>
+          <flowsInto>
+            <nextElementRef id="task3" />
+          </flowsInto>
+        </condition>
+        <task id="task3">
+          <name>task3</name>
+          <flowsInto>
+            <nextElementRef id="OutputCondition" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="task3" />
+        </task>
+        <outputCondition id="OutputCondition" />
+      </processControlElements>
+    </decomposition>
+    <decomposition id="joinTask" xsi:type="WebServiceGatewayFactsType">
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="splitTask" xsi:type="WebServiceGatewayFactsType">
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="task1" xsi:type="WebServiceGatewayFactsType">
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="task2.1" xsi:type="WebServiceGatewayFactsType">
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="task2.2" xsi:type="WebServiceGatewayFactsType">
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="task3" xsi:type="WebServiceGatewayFactsType">
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+  </specification>
+  <layout>
+    <locale language="en" country="US"/>
+    <specification id="yawl-demo">
+      <size w="58" h="28"/>
+      <net id="Net">
+        <bounds x="0" y="0" w="1684" h="705"/>
+        <frame x="0" y="0" w="1687" h="708"/>
+        <viewport x="0" y="0" w="1687" h="708"/>
+        <container id="condition1">
+          <vertex>
+            <attributes>
+              <bounds x="128" y="116" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="96" y="148" w="97" h="21"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="condition2">
+          <vertex>
+            <attributes>
+              <bounds x="468" y="120" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="436" y="152" w="97" h="21"/>
+            </attributes>
+          </label>
+        </container>
+        <vertex id="OutputCondition">
+          <attributes>
+            <bounds x="660" y="128" w="32" h="32"/>
+          </attributes>
+        </vertex>
+        <vertex id="InputCondition">
+          <attributes>
+            <bounds x="0" y="120" w="32" h="32"/>
+          </attributes>
+        </vertex>
+        <container id="splitTask">
+          <vertex>
+            <attributes>
+              <bounds x="184" y="96" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="156" y="128" w="96" h="20"/>
+            </attributes>
+          </label>
+          <decorator type="XOR_split">
+            <position>13</position>
+            <attributes>
+              <bounds x="215" y="96" w="11" h="32"/>
+            </attributes>
+          </decorator>
+        </container>
+        <container id="task1">
+          <vertex>
+            <attributes>
+              <bounds x="52" y="132" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="20" y="164" w="97" h="21"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="joinTask">
+          <vertex>
+            <attributes>
+              <bounds x="376" y="112" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="340" y="144" w="96" h="20"/>
+            </attributes>
+          </label>
+          <decorator type="XOR_join">
+            <position>12</position>
+            <attributes>
+              <bounds x="366" y="112" w="11" h="32"/>
+            </attributes>
+          </decorator>
+        </container>
+        <container id="task2.1">
+          <vertex>
+            <attributes>
+              <bounds x="280" y="36" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="248" y="68" w="96" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="task3">
+          <vertex>
+            <attributes>
+              <bounds x="560" y="120" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="528" y="152" w="97" h="21"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="task2.2">
+          <vertex>
+            <attributes>
+              <bounds x="280" y="140" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="248" y="172" w="96" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <flow source="splitTask" target="task2.1">
+          <ports in="1" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="splitTask" target="task2.2">
+          <ports in="4" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="condition2" target="task3">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="condition1" target="splitTask">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="task2.2" target="joinTask">
+          <ports in="13" out="3"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="task1" target="condition1">
+          <ports in="13" out="10"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="joinTask" target="condition2">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="InputCondition" target="task1">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="task2.1" target="joinTask">
+          <ports in="13" out="2"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="task3" target="OutputCondition">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+      </net>
+    </specification>
+  </layout>
+</specificationSet>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specificationSet xmlns="http://www.yawlfoundation.org/yawlschema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="4.0" xsi:schemaLocation="http://www.yawlfoundation.org/yawlschema http://www.yawlfoundation.org/yawlschema/YAWL_Schema4.0.xsd">
+  <specification uri="credit-card-demo">
+    <documentation>No description provided</documentation>
+    <metaData>
+      <creator>pedro</creator>
+      <description>No description provided</description>
+      <coverage>4.3.1.772</coverage>
+      <version>0.1</version>
+      <persistent>false</persistent>
+      <identifier>UID_03bd357a-3b66-4ed3-9294-0c8bbe33d238</identifier>
+    </metaData>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" />
+    <decomposition id="Net" isRootNet="true" xsi:type="NetFactsType">
+      <processControlElements>
+        <inputCondition id="InputCondition" />
+        <outputCondition id="OutputCondition" />
+      </processControlElements>
+    </decomposition>
+  </specification>
+  <layout>
+    <locale language="en" country="US"/>
+    <specification id="credit-card-demo">
+      <size w="58" h="28"/>
+      <net id="Net">
+        <bounds x="0" y="0" w="1126" h="567"/>
+        <frame x="0" y="0" w="1129" h="570"/>
+        <viewport x="0" y="0" w="1129" h="570"/>
+        <vertex id="OutputCondition">
+          <attributes>
+            <bounds x="1,052" y="276" w="32" h="32"/>
+          </attributes>
+        </vertex>
+        <vertex id="InputCondition">
+          <attributes>
+            <bounds x="36" y="276" w="32" h="32"/>
+          </attributes>
+        </vertex>
+      </net>
+    </specification>
+  </layout>
+</specificationSet>
