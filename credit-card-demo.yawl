@@ -6,7 +6,7 @@
       <creator>pedro</creator>
       <description>No description provided</description>
       <coverage>4.3.1</coverage>
-      <version>0.4</version>
+      <version>0.5</version>
       <persistent>false</persistent>
       <identifier>UID_03bd357a-3b66-4ed3-9294-0c8bbe33d238</identifier>
     </metaData>
@@ -343,12 +343,12 @@
     <specification id="credit-card-demo">
       <size w="58" h="28"/>
       <net id="Net">
-        <bounds x="0" y="0" w="1811" h="714"/>
-        <frame x="0" y="0" w="1814" h="717"/>
-        <viewport x="0" y="0" w="1814" h="717"/>
+        <bounds x="0" y="0" w="1238" h="849"/>
+        <frame x="0" y="0" w="1241" h="852"/>
+        <viewport x="0" y="0" w="1241" h="852"/>
         <vertex id="C">
           <attributes>
-            <bounds x="220" y="508" w="32" h="32"/>
+            <bounds x="224" y="464" w="32" h="32"/>
           </attributes>
         </vertex>
         <vertex id="OutputCondition">
@@ -358,36 +358,36 @@
         </vertex>
         <vertex id="InputCondition">
           <attributes>
-            <bounds x="36" y="276" w="32" h="32"/>
+            <bounds x="36" y="288" w="32" h="32"/>
           </attributes>
         </vertex>
         <container id="Check_completeness">
           <vertex>
             <attributes>
-              <bounds x="168" y="300" w="32" h="32"/>
+              <bounds x="172" y="288" w="32" h="32"/>
             </attributes>
           </vertex>
           <label>
             <attributes>
-              <bounds x="140" y="332" w="96" h="40"/>
+              <bounds x="144" y="320" w="97" h="41"/>
             </attributes>
           </label>
           <decorator type="AND_split">
             <position>13</position>
             <attributes>
-              <bounds x="199" y="300" w="11" h="32"/>
+              <bounds x="203" y="288" w="11" h="32"/>
             </attributes>
           </decorator>
         </container>
         <container id="Check_credit_Bureau">
           <vertex>
             <attributes>
-              <bounds x="276" y="344" w="32" h="32"/>
+              <bounds x="252" y="340" w="32" h="32"/>
             </attributes>
           </vertex>
           <label>
             <attributes>
-              <bounds x="244" y="376" w="96" h="40"/>
+              <bounds x="220" y="372" w="97" h="41"/>
             </attributes>
           </label>
         </container>
@@ -424,156 +424,156 @@
         <container id="Make_decision">
           <vertex>
             <attributes>
-              <bounds x="428" y="308" w="32" h="32"/>
+              <bounds x="432" y="284" w="32" h="32"/>
             </attributes>
           </vertex>
           <label>
             <attributes>
-              <bounds x="400" y="340" w="96" h="20"/>
+              <bounds x="404" y="316" w="97" h="21"/>
             </attributes>
           </label>
           <decorator type="XOR_split">
             <position>13</position>
             <attributes>
-              <bounds x="459" y="308" w="11" h="32"/>
+              <bounds x="463" y="284" w="11" h="32"/>
             </attributes>
           </decorator>
         </container>
         <container id="Receive_application">
           <vertex>
             <attributes>
-              <bounds x="100" y="292" w="32" h="32"/>
+              <bounds x="104" y="288" w="32" h="32"/>
             </attributes>
           </vertex>
           <label>
             <attributes>
-              <bounds x="72" y="324" w="96" h="40"/>
+              <bounds x="76" y="320" w="97" h="41"/>
             </attributes>
           </label>
           <decorator type="XOR_split">
             <position>13</position>
             <attributes>
-              <bounds x="131" y="292" w="11" h="32"/>
+              <bounds x="135" y="288" w="11" h="32"/>
             </attributes>
           </decorator>
         </container>
         <container id="Want_extra_package">
           <vertex>
             <attributes>
-              <bounds x="624" y="268" w="32" h="32"/>
+              <bounds x="592" y="236" w="32" h="32"/>
             </attributes>
           </vertex>
           <label>
             <attributes>
-              <bounds x="596" y="300" w="96" h="40"/>
+              <bounds x="564" y="268" w="97" h="41"/>
             </attributes>
           </label>
           <decorator type="XOR_split">
             <position>13</position>
             <attributes>
-              <bounds x="655" y="268" w="11" h="32"/>
+              <bounds x="623" y="236" w="11" h="32"/>
             </attributes>
           </decorator>
         </container>
         <container id="Collect_results">
           <vertex>
             <attributes>
-              <bounds x="352" y="308" w="32" h="32"/>
+              <bounds x="348" y="284" w="32" h="32"/>
             </attributes>
           </vertex>
           <label>
             <attributes>
-              <bounds x="316" y="340" w="96" h="20"/>
+              <bounds x="312" y="316" w="97" h="21"/>
             </attributes>
           </label>
           <decorator type="AND_join">
             <position>12</position>
             <attributes>
-              <bounds x="342" y="308" w="11" h="32"/>
+              <bounds x="338" y="284" w="11" h="32"/>
             </attributes>
           </decorator>
         </container>
         <container id="Check_document">
           <vertex>
             <attributes>
-              <bounds x="268" y="244" w="32" h="32"/>
+              <bounds x="252" y="244" w="32" h="32"/>
             </attributes>
           </vertex>
           <label>
             <attributes>
-              <bounds x="236" y="276" w="96" h="40"/>
+              <bounds x="220" y="276" w="97" h="41"/>
             </attributes>
           </label>
         </container>
         <container id="Reject">
           <vertex>
             <attributes>
-              <bounds x="516" y="356" w="32" h="32"/>
+              <bounds x="512" y="340" w="32" h="32"/>
             </attributes>
           </vertex>
           <label>
             <attributes>
-              <bounds x="484" y="388" w="96" h="20"/>
+              <bounds x="480" y="372" w="97" h="21"/>
             </attributes>
           </label>
         </container>
         <container id="Complete_features">
           <vertex>
             <attributes>
-              <bounds x="896" y="196" w="32" h="32"/>
+              <bounds x="860" y="188" w="32" h="32"/>
             </attributes>
           </vertex>
           <label>
             <attributes>
-              <bounds x="860" y="228" w="97" h="41"/>
+              <bounds x="824" y="220" w="97" h="41"/>
             </attributes>
           </label>
           <decorator type="OR_join">
             <position>12</position>
             <attributes>
-              <bounds x="886" y="196" w="11" h="32"/>
+              <bounds x="850" y="188" w="11" h="32"/>
             </attributes>
           </decorator>
         </container>
         <container id="Reward_program">
           <vertex>
             <attributes>
-              <bounds x="788" y="128" w="32" h="32"/>
+              <bounds x="764" y="140" w="32" h="32"/>
             </attributes>
           </vertex>
           <label>
             <attributes>
-              <bounds x="756" y="160" w="97" h="41"/>
+              <bounds x="732" y="172" w="97" h="41"/>
             </attributes>
           </label>
         </container>
         <container id="Secondary_cardholders">
           <vertex>
             <attributes>
-              <bounds x="788" y="236" w="32" h="32"/>
+              <bounds x="760" y="244" w="32" h="32"/>
             </attributes>
           </vertex>
           <label>
             <attributes>
-              <bounds x="756" y="268" w="97" h="41"/>
+              <bounds x="728" y="276" w="97" h="41"/>
             </attributes>
           </label>
         </container>
         <container id="Start_features">
           <vertex>
             <attributes>
-              <bounds x="692" y="188" w="32" h="32"/>
+              <bounds x="676" y="192" w="32" h="32"/>
             </attributes>
           </vertex>
           <label>
             <attributes>
-              <bounds x="664" y="220" w="97" h="21"/>
+              <bounds x="648" y="224" w="97" h="21"/>
             </attributes>
           </label>
           <decorator type="OR_split">
             <position>13</position>
             <attributes>
-              <bounds x="723" y="188" w="11" h="32"/>
+              <bounds x="707" y="192" w="11" h="32"/>
             </attributes>
           </decorator>
         </container>
@@ -592,12 +592,12 @@
         <container id="Approve">
           <vertex>
             <attributes>
-              <bounds x="512" y="260" w="32" h="32"/>
+              <bounds x="516" y="236" w="32" h="32"/>
             </attributes>
           </vertex>
           <label>
             <attributes>
-              <bounds x="480" y="292" w="96" h="20"/>
+              <bounds x="484" y="268" w="97" h="21"/>
             </attributes>
           </label>
         </container>
@@ -661,6 +661,12 @@
             <lineStyle>11</lineStyle>
           </attributes>
         </flow>
+        <flow source="Approve" target="Want_extra_package">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
         <flow source="Hold" target="OutputCondition">
           <ports in="13" out="11"/>
           <attributes>
@@ -673,8 +679,8 @@
             <lineStyle>11</lineStyle>
           </attributes>
         </flow>
-        <flow source="Approve" target="Want_extra_package">
-          <ports in="13" out="12"/>
+        <flow source="Cancel" target="OutputCondition">
+          <ports in="13" out="11"/>
           <attributes>
             <lineStyle>11</lineStyle>
           </attributes>
@@ -688,12 +694,6 @@
               <value x="807" y="339"/>
               <value x="1,067.5" y="307"/>
             </points>
-          </attributes>
-        </flow>
-        <flow source="Cancel" target="OutputCondition">
-          <ports in="13" out="11"/>
-          <attributes>
-            <lineStyle>11</lineStyle>
           </attributes>
         </flow>
         <flow source="Deliver_credit_card" target="OutputCondition">
