@@ -5,8 +5,8 @@
     <metaData>
       <creator>pedro</creator>
       <description>No description provided</description>
-      <coverage>4.3.1.772</coverage>
-      <version>0.2</version>
+      <coverage>4.3.1</coverage>
+      <version>0.4</version>
       <persistent>false</persistent>
       <identifier>UID_03bd357a-3b66-4ed3-9294-0c8bbe33d238</identifier>
     </metaData>
@@ -123,7 +123,7 @@
           <flowsInto>
             <nextElementRef id="Make_decision" />
           </flowsInto>
-          <join code="xor" />
+          <join code="and" />
           <split code="and" />
           <resourcing>
             <offer initiator="user" />
@@ -183,6 +183,25 @@
           <name>Want extra package</name>
           <flowsInto>
             <nextElementRef id="Start_features" />
+            <predicate ordering="0">true()</predicate>
+          </flowsInto>
+          <flowsInto>
+            <nextElementRef id="Deliver_credit_card" />
+            <isDefaultFlow />
+          </flowsInto>
+          <join code="xor" />
+          <split code="xor" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Want_extra_package" />
+        </task>
+        <task id="Deliver_credit_card">
+          <name>Deliver credit card</name>
+          <flowsInto>
+            <nextElementRef id="OutputCondition" />
           </flowsInto>
           <join code="xor" />
           <split code="and" />
@@ -191,7 +210,7 @@
             <allocate initiator="user" />
             <start initiator="user" />
           </resourcing>
-          <decomposesTo id="Want_extra_package" />
+          <decomposesTo id="Deliver_credit_card" />
         </task>
         <task id="Start_features">
           <name>Start features</name>
@@ -254,20 +273,6 @@
             <start initiator="user" />
           </resourcing>
           <decomposesTo id="Complete_features" />
-        </task>
-        <task id="Deliver_credit_card">
-          <name>Deliver credit card</name>
-          <flowsInto>
-            <nextElementRef id="OutputCondition" />
-          </flowsInto>
-          <join code="xor" />
-          <split code="and" />
-          <resourcing>
-            <offer initiator="user" />
-            <allocate initiator="user" />
-            <start initiator="user" />
-          </resourcing>
-          <decomposesTo id="Deliver_credit_card" />
         </task>
         <outputCondition id="OutputCondition" />
       </processControlElements>
@@ -338,9 +343,9 @@
     <specification id="credit-card-demo">
       <size w="58" h="28"/>
       <net id="Net">
-        <bounds x="0" y="0" w="1684" h="705"/>
-        <frame x="0" y="0" w="1687" h="708"/>
-        <viewport x="0" y="0" w="1687" h="708"/>
+        <bounds x="0" y="0" w="1811" h="714"/>
+        <frame x="0" y="0" w="1814" h="717"/>
+        <viewport x="0" y="0" w="1814" h="717"/>
         <vertex id="C">
           <attributes>
             <bounds x="220" y="508" w="32" h="32"/>
@@ -406,9 +411,15 @@
           </vertex>
           <label>
             <attributes>
-              <bounds x="944" y="308" w="96" h="40"/>
+              <bounds x="940" y="308" w="96" h="40"/>
             </attributes>
           </label>
+          <decorator type="XOR_join">
+            <position>12</position>
+            <attributes>
+              <bounds x="966" y="276" w="11" h="32"/>
+            </attributes>
+          </decorator>
         </container>
         <container id="Make_decision">
           <vertex>
@@ -446,6 +457,24 @@
             </attributes>
           </decorator>
         </container>
+        <container id="Want_extra_package">
+          <vertex>
+            <attributes>
+              <bounds x="624" y="268" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="596" y="300" w="96" h="40"/>
+            </attributes>
+          </label>
+          <decorator type="XOR_split">
+            <position>13</position>
+            <attributes>
+              <bounds x="655" y="268" w="11" h="32"/>
+            </attributes>
+          </decorator>
+        </container>
         <container id="Collect_results">
           <vertex>
             <attributes>
@@ -457,24 +486,12 @@
               <bounds x="316" y="340" w="96" h="20"/>
             </attributes>
           </label>
-          <decorator type="XOR_join">
+          <decorator type="AND_join">
             <position>12</position>
             <attributes>
               <bounds x="342" y="308" w="11" h="32"/>
             </attributes>
           </decorator>
-        </container>
-        <container id="Want_extra_package">
-          <vertex>
-            <attributes>
-              <bounds x="624" y="268" w="32" h="32"/>
-            </attributes>
-          </vertex>
-          <label>
-            <attributes>
-              <bounds x="592" y="300" w="96" h="40"/>
-            </attributes>
-          </label>
         </container>
         <container id="Check_document">
           <vertex>
@@ -503,60 +520,60 @@
         <container id="Complete_features">
           <vertex>
             <attributes>
-              <bounds x="904" y="224" w="32" h="32"/>
+              <bounds x="896" y="196" w="32" h="32"/>
             </attributes>
           </vertex>
           <label>
             <attributes>
-              <bounds x="868" y="256" w="96" h="40"/>
+              <bounds x="860" y="228" w="97" h="41"/>
             </attributes>
           </label>
           <decorator type="OR_join">
             <position>12</position>
             <attributes>
-              <bounds x="894" y="224" w="11" h="32"/>
+              <bounds x="886" y="196" w="11" h="32"/>
             </attributes>
           </decorator>
         </container>
         <container id="Reward_program">
           <vertex>
             <attributes>
-              <bounds x="820" y="180" w="32" h="32"/>
+              <bounds x="788" y="128" w="32" h="32"/>
             </attributes>
           </vertex>
           <label>
             <attributes>
-              <bounds x="788" y="212" w="96" h="40"/>
+              <bounds x="756" y="160" w="97" h="41"/>
             </attributes>
           </label>
         </container>
         <container id="Secondary_cardholders">
           <vertex>
             <attributes>
-              <bounds x="816" y="272" w="32" h="32"/>
+              <bounds x="788" y="236" w="32" h="32"/>
             </attributes>
           </vertex>
           <label>
             <attributes>
-              <bounds x="784" y="304" w="96" h="40"/>
+              <bounds x="756" y="268" w="97" h="41"/>
             </attributes>
           </label>
         </container>
         <container id="Start_features">
           <vertex>
             <attributes>
-              <bounds x="712" y="220" w="32" h="32"/>
+              <bounds x="692" y="188" w="32" h="32"/>
             </attributes>
           </vertex>
           <label>
             <attributes>
-              <bounds x="684" y="252" w="96" h="20"/>
+              <bounds x="664" y="220" w="97" h="21"/>
             </attributes>
           </label>
           <decorator type="OR_split">
             <position>13</position>
             <attributes>
-              <bounds x="743" y="220" w="11" h="32"/>
+              <bounds x="723" y="188" w="11" h="32"/>
             </attributes>
           </decorator>
         </container>
@@ -586,6 +603,12 @@
         </container>
         <flow source="Check_document" target="Collect_results">
           <ports in="13" out="2"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Want_extra_package" target="Deliver_credit_card">
+          <ports in="4" out="3"/>
           <attributes>
             <lineStyle>11</lineStyle>
           </attributes>
@@ -621,7 +644,7 @@
           </attributes>
         </flow>
         <flow source="Want_extra_package" target="Start_features">
-          <ports in="13" out="12"/>
+          <ports in="2" out="12"/>
           <attributes>
             <lineStyle>11</lineStyle>
           </attributes>
@@ -638,6 +661,12 @@
             <lineStyle>11</lineStyle>
           </attributes>
         </flow>
+        <flow source="Hold" target="OutputCondition">
+          <ports in="13" out="11"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
         <flow source="Collect_results" target="Make_decision">
           <ports in="13" out="12"/>
           <attributes>
@@ -646,18 +675,6 @@
         </flow>
         <flow source="Approve" target="Want_extra_package">
           <ports in="13" out="12"/>
-          <attributes>
-            <lineStyle>11</lineStyle>
-          </attributes>
-        </flow>
-        <flow source="Hold" target="OutputCondition">
-          <ports in="13" out="11"/>
-          <attributes>
-            <lineStyle>11</lineStyle>
-          </attributes>
-        </flow>
-        <flow source="Cancel" target="OutputCondition">
-          <ports in="13" out="11"/>
           <attributes>
             <lineStyle>11</lineStyle>
           </attributes>
@@ -673,6 +690,12 @@
             </points>
           </attributes>
         </flow>
+        <flow source="Cancel" target="OutputCondition">
+          <ports in="13" out="11"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
         <flow source="Deliver_credit_card" target="OutputCondition">
           <ports in="13" out="12"/>
           <attributes>
@@ -686,12 +709,18 @@
           </attributes>
         </flow>
         <flow source="Complete_features" target="Deliver_credit_card">
-          <ports in="13" out="12"/>
+          <ports in="13" out="2"/>
           <attributes>
             <lineStyle>11</lineStyle>
           </attributes>
         </flow>
         <flow source="Check_credit_Bureau" target="Collect_results">
+          <ports in="13" out="2"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Secondary_cardholders" target="Complete_features">
           <ports in="13" out="2"/>
           <attributes>
             <lineStyle>11</lineStyle>
@@ -709,7 +738,7 @@
             <lineStyle>11</lineStyle>
           </attributes>
         </flow>
-        <flow source="Secondary_cardholders" target="Complete_features">
+        <flow source="Reward_program" target="Complete_features">
           <ports in="13" out="2"/>
           <attributes>
             <lineStyle>11</lineStyle>
@@ -717,12 +746,6 @@
         </flow>
         <flow source="InputCondition" target="Receive_application">
           <ports in="13" out="12"/>
-          <attributes>
-            <lineStyle>11</lineStyle>
-          </attributes>
-        </flow>
-        <flow source="Reward_program" target="Complete_features">
-          <ports in="13" out="2"/>
           <attributes>
             <lineStyle>11</lineStyle>
           </attributes>

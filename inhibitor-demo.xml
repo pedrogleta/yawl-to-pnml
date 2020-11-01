@@ -1,0 +1,27 @@
+<pnml>
+  <net id="net1" type="http://www.pnml.org/version-2009/grammar/pnmlcoremodel">
+    <page id="n0">
+      <place id="place_InputCondition">
+        <name>
+          <text>place_InputCondition</text>
+        </name>
+        <initialMarking>
+          <text>1</text>
+        </initialMarking>
+      </place>
+      <transition id="transition">
+        <name>
+          <text>transition</text>
+        </name>
+      </transition>
+      <place id="place_OutputCondition">
+        <name>
+          <text>place_OutputCondition</text>
+        </name>
+      </place>
+      <arc id="0" source="place_InputCondition" target="transition">
+        <type value="inhibitor" />
+      </arc>
+    </page>
+  </net>
+</pnml>

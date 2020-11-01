@@ -5,17 +5,332 @@
     <metaData>
       <creator>pedro</creator>
       <description>No description provided</description>
-      <coverage>4.3.1.772</coverage>
-      <version>0.1</version>
+      <coverage>4.3.1</coverage>
+      <version>0.3</version>
       <persistent>false</persistent>
       <identifier>UID_03bd357a-3b66-4ed3-9294-0c8bbe33d238</identifier>
     </metaData>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" />
     <decomposition id="Net" isRootNet="true" xsi:type="NetFactsType">
       <processControlElements>
-        <inputCondition id="InputCondition" />
+        <inputCondition id="InputCondition">
+          <flowsInto>
+            <nextElementRef id="Receive_application" />
+          </flowsInto>
+        </inputCondition>
+        <task id="Receive_application">
+          <name>Receive application</name>
+          <flowsInto>
+            <nextElementRef id="C" />
+            <isDefaultFlow />
+          </flowsInto>
+          <flowsInto>
+            <nextElementRef id="Check_completeness" />
+            <predicate ordering="0">true()</predicate>
+          </flowsInto>
+          <join code="xor" />
+          <split code="xor" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Receive_application" />
+        </task>
+        <condition id="C">
+          <flowsInto>
+            <nextElementRef id="Cancel" />
+          </flowsInto>
+          <flowsInto>
+            <nextElementRef id="Hold" />
+          </flowsInto>
+        </condition>
+        <task id="Cancel">
+          <name>Cancel</name>
+          <flowsInto>
+            <nextElementRef id="OutputCondition" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Cancel" />
+        </task>
+        <task id="Check_completeness">
+          <name>Check completeness</name>
+          <flowsInto>
+            <nextElementRef id="Check_document" />
+          </flowsInto>
+          <flowsInto>
+            <nextElementRef id="Check_credit_Bureau" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Check_completeness" />
+        </task>
+        <task id="Hold">
+          <name>Hold</name>
+          <flowsInto>
+            <nextElementRef id="OutputCondition" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Hold" />
+        </task>
+        <task id="Check_credit_Bureau">
+          <name>Check credit Bureau</name>
+          <flowsInto>
+            <nextElementRef id="Collect_results" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Check_credit_Bureau" />
+        </task>
+        <task id="Check_document">
+          <name>Check document</name>
+          <flowsInto>
+            <nextElementRef id="Collect_results" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Check_document" />
+        </task>
+        <task id="Collect_results">
+          <name>Collect results</name>
+          <flowsInto>
+            <nextElementRef id="Make_decision" />
+          </flowsInto>
+          <join code="and" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Collect_results" />
+        </task>
+        <task id="Make_decision">
+          <name>Make decision</name>
+          <flowsInto>
+            <nextElementRef id="Reject" />
+            <isDefaultFlow />
+          </flowsInto>
+          <flowsInto>
+            <nextElementRef id="Approve" />
+            <predicate ordering="0">true()</predicate>
+          </flowsInto>
+          <join code="xor" />
+          <split code="xor" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Make_decision" />
+        </task>
+        <task id="Approve">
+          <name>Approve</name>
+          <flowsInto>
+            <nextElementRef id="Want_extra_package" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Approve" />
+        </task>
+        <task id="Reject">
+          <name>Reject</name>
+          <flowsInto>
+            <nextElementRef id="OutputCondition" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Reject" />
+        </task>
+        <task id="Want_extra_package">
+          <name>Want extra package</name>
+          <flowsInto>
+            <nextElementRef id="Start_features" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Want_extra_package" />
+        </task>
+        <task id="Start_features">
+          <name>Start features</name>
+          <flowsInto>
+            <nextElementRef id="Secondary_cardholders" />
+            <predicate>true()</predicate>
+          </flowsInto>
+          <flowsInto>
+            <nextElementRef id="Reward_program" />
+            <predicate>true()</predicate>
+            <isDefaultFlow />
+          </flowsInto>
+          <join code="xor" />
+          <split code="or" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Start_features" />
+        </task>
+        <task id="Reward_program">
+          <name>Reward program</name>
+          <flowsInto>
+            <nextElementRef id="Complete_features" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Reward_program" />
+        </task>
+        <task id="Secondary_cardholders">
+          <name>Secondary cardholders</name>
+          <flowsInto>
+            <nextElementRef id="Complete_features" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Secondary_cardholders" />
+        </task>
+        <task id="Complete_features">
+          <name>Complete features</name>
+          <flowsInto>
+            <nextElementRef id="Deliver_credit_card" />
+          </flowsInto>
+          <join code="or" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Complete_features" />
+        </task>
+        <task id="Deliver_credit_card">
+          <name>Deliver credit card</name>
+          <flowsInto>
+            <nextElementRef id="OutputCondition" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Deliver_credit_card" />
+        </task>
         <outputCondition id="OutputCondition" />
       </processControlElements>
+    </decomposition>
+    <decomposition id="Approve" xsi:type="WebServiceGatewayFactsType">
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Cancel" xsi:type="WebServiceGatewayFactsType">
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Check_completeness" xsi:type="WebServiceGatewayFactsType">
+      <name>Check completeness</name>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Check_credit_Bureau" xsi:type="WebServiceGatewayFactsType">
+      <name>Check credit Bureau</name>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Check_document" xsi:type="WebServiceGatewayFactsType">
+      <name>Check document</name>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Collect_results" xsi:type="WebServiceGatewayFactsType">
+      <name>Collect results</name>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Complete_features" xsi:type="WebServiceGatewayFactsType">
+      <name>Complete features</name>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Deliver_credit_card" xsi:type="WebServiceGatewayFactsType">
+      <name>Deliver credit card</name>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Hold" xsi:type="WebServiceGatewayFactsType">
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Make_decision" xsi:type="WebServiceGatewayFactsType">
+      <name>Make decision</name>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Receive_application" xsi:type="WebServiceGatewayFactsType">
+      <name>Receive application</name>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Reject" xsi:type="WebServiceGatewayFactsType">
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Reward_program" xsi:type="WebServiceGatewayFactsType">
+      <name>Reward program</name>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Secondary_cardholders" xsi:type="WebServiceGatewayFactsType">
+      <name>Secondary cardholders</name>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Start_features" xsi:type="WebServiceGatewayFactsType">
+      <name>Start features</name>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Want_extra_package" xsi:type="WebServiceGatewayFactsType">
+      <name>Want extra package</name>
+      <externalInteraction>manual</externalInteraction>
     </decomposition>
   </specification>
   <layout>
@@ -23,9 +338,14 @@
     <specification id="credit-card-demo">
       <size w="58" h="28"/>
       <net id="Net">
-        <bounds x="0" y="0" w="1126" h="567"/>
-        <frame x="0" y="0" w="1129" h="570"/>
-        <viewport x="0" y="0" w="1129" h="570"/>
+        <bounds x="0" y="0" w="1811" h="901"/>
+        <frame x="0" y="0" w="1814" h="904"/>
+        <viewport x="0" y="0" w="1814" h="904"/>
+        <vertex id="C">
+          <attributes>
+            <bounds x="220" y="508" w="32" h="32"/>
+          </attributes>
+        </vertex>
         <vertex id="OutputCondition">
           <attributes>
             <bounds x="1,052" y="276" w="32" h="32"/>
@@ -36,6 +356,377 @@
             <bounds x="36" y="276" w="32" h="32"/>
           </attributes>
         </vertex>
+        <container id="Check_completeness">
+          <vertex>
+            <attributes>
+              <bounds x="168" y="300" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="140" y="332" w="96" h="40"/>
+            </attributes>
+          </label>
+          <decorator type="AND_split">
+            <position>13</position>
+            <attributes>
+              <bounds x="199" y="300" w="11" h="32"/>
+            </attributes>
+          </decorator>
+        </container>
+        <container id="Check_credit_Bureau">
+          <vertex>
+            <attributes>
+              <bounds x="276" y="344" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="244" y="376" w="96" h="40"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Cancel">
+          <vertex>
+            <attributes>
+              <bounds x="312" y="552" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="280" y="584" w="96" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Deliver_credit_card">
+          <vertex>
+            <attributes>
+              <bounds x="976" y="276" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="944" y="308" w="96" h="40"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Make_decision">
+          <vertex>
+            <attributes>
+              <bounds x="428" y="308" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="400" y="340" w="96" h="20"/>
+            </attributes>
+          </label>
+          <decorator type="XOR_split">
+            <position>13</position>
+            <attributes>
+              <bounds x="459" y="308" w="11" h="32"/>
+            </attributes>
+          </decorator>
+        </container>
+        <container id="Receive_application">
+          <vertex>
+            <attributes>
+              <bounds x="100" y="292" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="72" y="324" w="96" h="40"/>
+            </attributes>
+          </label>
+          <decorator type="XOR_split">
+            <position>13</position>
+            <attributes>
+              <bounds x="131" y="292" w="11" h="32"/>
+            </attributes>
+          </decorator>
+        </container>
+        <container id="Want_extra_package">
+          <vertex>
+            <attributes>
+              <bounds x="624" y="268" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="592" y="300" w="96" h="40"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Collect_results">
+          <vertex>
+            <attributes>
+              <bounds x="352" y="308" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="316" y="340" w="96" h="20"/>
+            </attributes>
+          </label>
+          <decorator type="AND_join">
+            <position>12</position>
+            <attributes>
+              <bounds x="342" y="308" w="11" h="32"/>
+            </attributes>
+          </decorator>
+        </container>
+        <container id="Check_document">
+          <vertex>
+            <attributes>
+              <bounds x="268" y="244" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="236" y="276" w="96" h="40"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Reject">
+          <vertex>
+            <attributes>
+              <bounds x="516" y="356" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="484" y="388" w="96" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Complete_features">
+          <vertex>
+            <attributes>
+              <bounds x="904" y="224" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="868" y="256" w="96" h="40"/>
+            </attributes>
+          </label>
+          <decorator type="OR_join">
+            <position>12</position>
+            <attributes>
+              <bounds x="894" y="224" w="11" h="32"/>
+            </attributes>
+          </decorator>
+        </container>
+        <container id="Reward_program">
+          <vertex>
+            <attributes>
+              <bounds x="820" y="180" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="788" y="212" w="96" h="40"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Secondary_cardholders">
+          <vertex>
+            <attributes>
+              <bounds x="816" y="272" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="784" y="304" w="96" h="40"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Start_features">
+          <vertex>
+            <attributes>
+              <bounds x="712" y="220" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="684" y="252" w="96" h="20"/>
+            </attributes>
+          </label>
+          <decorator type="OR_split">
+            <position>13</position>
+            <attributes>
+              <bounds x="743" y="220" w="11" h="32"/>
+            </attributes>
+          </decorator>
+        </container>
+        <container id="Hold">
+          <vertex>
+            <attributes>
+              <bounds x="308" y="464" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="276" y="496" w="96" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Approve">
+          <vertex>
+            <attributes>
+              <bounds x="512" y="260" w="32" h="32"/>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="480" y="292" w="96" h="20"/>
+            </attributes>
+          </label>
+        </container>
+        <flow source="Check_document" target="Collect_results">
+          <ports in="13" out="2"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Start_features" target="Reward_program">
+          <ports in="0" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="C" target="Cancel">
+          <ports in="11" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Make_decision" target="Reject">
+          <ports in="4" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="C" target="Hold">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Receive_application" target="Check_completeness">
+          <ports in="2" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Want_extra_package" target="Start_features">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Receive_application" target="C">
+          <ports in="4" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Make_decision" target="Approve">
+          <ports in="0" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Hold" target="OutputCondition">
+          <ports in="13" out="11"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Collect_results" target="Make_decision">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Approve" target="Want_extra_package">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Reject" target="OutputCondition">
+          <ports in="13" out="11"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+            <points>
+              <value x="547" y="371.5"/>
+              <value x="807" y="339"/>
+              <value x="1,067.5" y="307"/>
+            </points>
+          </attributes>
+        </flow>
+        <flow source="Cancel" target="OutputCondition">
+          <ports in="13" out="11"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Deliver_credit_card" target="OutputCondition">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Check_completeness" target="Check_credit_Bureau">
+          <ports in="4" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Complete_features" target="Deliver_credit_card">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Check_credit_Bureau" target="Collect_results">
+          <ports in="13" out="2"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Secondary_cardholders" target="Complete_features">
+          <ports in="13" out="2"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Check_completeness" target="Check_document">
+          <ports in="0" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Start_features" target="Secondary_cardholders">
+          <ports in="4" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Reward_program" target="Complete_features">
+          <ports in="13" out="2"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="InputCondition" target="Receive_application">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
       </net>
     </specification>
   </layout>
